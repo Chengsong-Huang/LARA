@@ -13,14 +13,12 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--model', type=str, default = "NousResearch/Llama-2-7b-hf")
 parser.add_argument('--output_path', type=str, default = "results")
 parser.add_argument('--dataset_name', type=str, default = 'BBH')
-# parser.add_argument('--subdataset_name', type=str, default = 'date_understanding')
 parser.add_argument('--train_length', type=int, default = 32)
 args = parser.parse_args()
 model_name = args.model
 output_path = args.output_path
 dataset_name = args.dataset_name
 max_length = 10
-if dataset_name in ['nl2bash','geoquery']:max_length = 64
 
 def evaluate(train_data,test_data):
     results = []
@@ -115,7 +113,6 @@ elif dataset_name == 'MMLU':
 else: TASKS = [1]
 
 train_length = args.train_length
-# subdataset_name = args.subdataset_name
 for subdataset_name in TASKS:
     start_time = datetime.now()
     print(start_time)
@@ -123,12 +120,6 @@ for subdataset_name in TASKS:
     dataset,filepath = get_path_dataset(output_path,dataset_name,subdataset_name,train_length)
     if os.path.exists(f'{filepath}/re_config.json'):
         print(f'{filepath}/re_config.json')
-        # continue
-        # exit()
-
-    # dataset.test = dataset.test[:20]
-
-
 
     model = SentenceTransformer('all-distilroberta-v1')
     inputs_test = [i['input'] for i in dataset.test]
