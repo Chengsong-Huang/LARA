@@ -98,321 +98,18 @@ class Emotion_Dataset(Dataset):
         super().__init__()
         self.train = []
         self.test = []
-        with open('language-model-arithmetic/datasets/emotion/test.jsonl','r') as f:
+        with open('LARA/datasets/emotion/test.jsonl','r') as f:
             for line in f:
                 sample = json.loads(line.strip())
                 self.test.append(sample)
         random.shuffle(self.test)
         self.test = self.test[:500]
         grouped_data = defaultdict(list)
-        with open('language-model-arithmetic/datasets/emotion/train.jsonl','r') as f:
+        with open('LARA/datasets/emotion/train.jsonl','r') as f:
             for line in f:
                 sample = json.loads(line.strip())
                 grouped_data[sample['output']].append(sample)
         for _ in range(train_length//28):
-            for candidate in candidates:
-                self.train.append(random.choice(grouped_data[candidate]))
-        assert len(self.train) == train_length
-
-class Banking77_Dataset(Dataset):
-    def __init__(self,subdataset_name = None,train_length = 128):
-        assert train_length % 77 ==0
-        candidates = [
-            "activate_my_card",
-            "age_limit",
-            "apple_pay_or_google_pay",
-            "atm_support",
-            "automatic_top_up",
-            "balance_not_updated_after_bank_transfer",
-            "balance_not_updated_after_cheque_or_cash_deposit",
-            "beneficiary_not_allowed",
-            "cancel_transfer",
-            "card_about_to_expire",
-            "card_acceptance",
-            "card_arrival",
-            "card_delivery_estimate",
-            "card_linking",
-            "card_not_working",
-            "card_payment_fee_charged",
-            "card_payment_not_recognised",
-            "card_payment_wrong_exchange_rate",
-            "card_swallowed",
-            "cash_withdrawal_charge",
-            "cash_withdrawal_not_recognised",
-            "change_pin",
-            "compromised_card",
-            "contactless_not_working",
-            "country_support",
-            "declined_card_payment",
-            "declined_cash_withdrawal",
-            "declined_transfer",
-            "direct_debit_payment_not_recognised",
-            "disposable_card_limits",
-            "edit_personal_details",
-            "exchange_charge",
-            "exchange_rate",
-            "exchange_via_app",
-            "extra_charge_on_statement",
-            "failed_transfer",
-            "fiat_currency_support",
-            "get_disposable_virtual_card",
-            "get_physical_card",
-            "getting_spare_card",
-            "getting_virtual_card",
-            "lost_or_stolen_card",
-            "lost_or_stolen_phone",
-            "order_physical_card",
-            "passcode_forgotten",
-            "pending_card_payment",
-            "pending_cash_withdrawal",
-            "pending_top_up",
-            "pending_transfer",
-            "pin_blocked",
-            "receiving_money",
-            "Refund_not_showing_up",
-            "request_refund",
-            "reverted_card_payment?",
-            "supported_cards_and_currencies",
-            "terminate_account",
-            "top_up_by_bank_transfer_charge",
-            "top_up_by_card_charge",
-            "top_up_by_cash_or_cheque",
-            "top_up_failed",
-            "top_up_limits",
-            "top_up_reverted",
-            "topping_up_by_card",
-            "transaction_charged_twice",
-            "transfer_fee_charged",
-            "transfer_into_account",
-            "transfer_not_received_by_recipient",
-            "transfer_timing",
-            "unable_to_verify_identity",
-            "verify_my_identity",
-            "verify_source_of_funds",
-            "verify_top_up",
-            "virtual_card_not_working",
-            "visa_or_mastercard",
-            "why_verify_identity",
-            "wrong_amount_of_cash_received",
-            "wrong_exchange_rate_for_cash_withdrawal"
-        ]
-        super().__init__()
-        self.train = []
-        self.test = []
-        with open('language-model-arithmetic/datasets/banking77/test.jsonl','r') as f:
-            for line in f:
-                sample = json.loads(line.strip())
-                sample['output'] = candidates[sample['output']] # convert from number to label
-                self.test.append(sample)
-        random.shuffle(self.test)
-        self.test = self.test[:500]
-        grouped_data = defaultdict(list)
-        with open('language-model-arithmetic/datasets/banking77/train.jsonl','r') as f:
-            for line in f:
-                sample = json.loads(line.strip())
-                sample['output'] = candidates[sample['output']] # convert from number to label
-                grouped_data[sample['output']].append(sample)
-        for _ in range(train_length//77):
-            for candidate in candidates:
-                self.train.append(random.choice(grouped_data[candidate]))
-        assert len(self.train) == train_length
-
-class Discovery_Dataset(Dataset):
-    def __init__(self,subdataset_name = None,train_length = 128):
-        assert train_length % 174 ==0
-        candidates = [
-            "[no-conn]",
-            "absolutely,",
-            "accordingly",
-            "actually,",
-            "additionally",
-            "admittedly,",
-            "afterward",
-            "again,",
-            "already,",
-            "also,",
-            "alternately,",
-            "alternatively",
-            "although,",
-            "altogether,",
-            "amazingly,",
-            "and",
-            "anyway,",
-            "apparently,",
-            "arguably,",
-            "as_a_result,",
-            "basically,",
-            "because_of_that",
-            "because_of_this",
-            "besides,",
-            "but",
-            "by_comparison,",
-            "by_contrast,",
-            "by_doing_this,",
-            "by_then",
-            "certainly,",
-            "clearly,",
-            "coincidentally,",
-            "collectively,",
-            "consequently",
-            "conversely",
-            "curiously,",
-            "currently,",
-            "elsewhere,",
-            "especially,",
-            "essentially,",
-            "eventually,",
-            "evidently,",
-            "finally,",
-            "first,",
-            "firstly,",
-            "for_example",
-            "for_instance",
-            "fortunately,",
-            "frankly,",
-            "frequently,",
-            "further,",
-            "furthermore",
-            "generally,",
-            "gradually,",
-            "happily,",
-            "hence,",
-            "here,",
-            "historically,",
-            "honestly,",
-            "hopefully,",
-            "however",
-            "ideally,",
-            "immediately,",
-            "importantly,",
-            "in_contrast,",
-            "in_fact,",
-            "in_other_words",
-            "in_particular,",
-            "in_short,",
-            "in_sum,",
-            "in_the_end,",
-            "in_the_meantime,",
-            "in_turn,",
-            "incidentally,",
-            "increasingly,",
-            "indeed,",
-            "inevitably,",
-            "initially,",
-            "instead,",
-            "interestingly,",
-            "ironically,",
-            "lastly,",
-            "lately,",
-            "later,",
-            "likewise,",
-            "locally,",
-            "luckily,",
-            "maybe,",
-            "meaning,",
-            "meantime,",
-            "meanwhile,",
-            "moreover",
-            "mostly,",
-            "namely,",
-            "nationally,",
-            "naturally,",
-            "nevertheless",
-            "next,",
-            "nonetheless",
-            "normally,",
-            "notably,",
-            "now,",
-            "obviously,",
-            "occasionally,",
-            "oddly,",
-            "often,",
-            "on_the_contrary,",
-            "on_the_other_hand",
-            "once,",
-            "only,",
-            "optionally,",
-            "or,",
-            "originally,",
-            "otherwise,",
-            "overall,",
-            "particularly,",
-            "perhaps,",
-            "personally,",
-            "plus,",
-            "preferably,",
-            "presently,",
-            "presumably,",
-            "previously,",
-            "probably,",
-            "rather,",
-            "realistically,",
-            "really,",
-            "recently,",
-            "regardless,",
-            "remarkably,",
-            "sadly,",
-            "second,",
-            "secondly,",
-            "separately,",
-            "seriously,",
-            "significantly,",
-            "similarly,",
-            "simultaneously",
-            "slowly,",
-            "so,",
-            "sometimes,",
-            "soon,",
-            "specifically,",
-            "still,",
-            "strangely,",
-            "subsequently,",
-            "suddenly,",
-            "supposedly,",
-            "surely,",
-            "surprisingly,",
-            "technically,",
-            "thankfully,",
-            "then,",
-            "theoretically,",
-            "thereafter,",
-            "thereby,",
-            "therefore",
-            "third,",
-            "thirdly,",
-            "this,",
-            "though,",
-            "thus,",
-            "together,",
-            "traditionally,",
-            "truly,",
-            "truthfully,",
-            "typically,",
-            "ultimately,",
-            "undoubtedly,",
-            "unfortunately,",
-            "unsurprisingly,",
-            "usually,",
-            "well,",
-            "yet,",
-        ]
-        super().__init__()
-        self.train = []
-        self.test = []
-        with open('language-model-arithmetic/datasets/discovery/test.jsonl','r') as f:
-            for line in f:
-                sample = json.loads(line.strip())
-                sample['output'] = candidates[sample['output']] # convert from number to label
-                self.test.append(sample)
-        random.shuffle(self.test)
-        self.test = self.test[:500]
-        grouped_data = defaultdict(list)
-        with open('language-model-arithmetic/datasets/discovery/train.jsonl','r') as f:
-            for line in f:
-                sample = json.loads(line.strip())
-                sample['output'] = candidates[sample['output']] # convert from number to label
-                grouped_data[sample['output']].append(sample)
-        for _ in range(train_length//174):
             for candidate in candidates:
                 self.train.append(random.choice(grouped_data[candidate]))
         assert len(self.train) == train_length
@@ -466,14 +163,14 @@ class TacRED_Dataset(Dataset):
         super().__init__()
         self.train = []
         self.test = []
-        with open('language-model-arithmetic/datasets/tacred/test.jsonl','r') as f:
+        with open('LARA/datasets/tacred/test.jsonl','r') as f:
             for line in f:
                 sample = json.loads(line.strip())
                 self.test.append(sample)
         random.shuffle(self.test)
         self.test = self.test[:500]
         grouped_data = defaultdict(list)
-        with open('language-model-arithmetic/datasets/tacred/train.jsonl','r') as f:
+        with open('LARA/datasets/tacred/train.jsonl','r') as f:
             for line in f:
                 sample = json.loads(line.strip())
                 grouped_data[sample['output']].append(sample)
@@ -481,66 +178,8 @@ class TacRED_Dataset(Dataset):
             for candidate in candidates:
                 self.train.append(random.choice(grouped_data[candidate]))
         assert len(self.train) == train_length
-
-class Gsm8k_Dataset(Dataset):
-    def __init__(self,subdataset_name = None,train_length = 64):
-        super().__init__()
-        self.train = []
-        self.test = []
-        with open('language-model-arithmetic/datasets/gsm8k/test.jsonl','r') as f:
-            for line in f:
-                sample = json.loads(line.strip())
-                self.test.append({'input':sample['question'],'output':sample['answer']})
-        random.shuffle(self.test)
-        self.test = self.test[:500]
-        with open('language-model-arithmetic/datasets/gsm8k/train.jsonl','r') as f:
-            for line in f:
-                sample = json.loads(line.strip())
-                self.train.append({'input':sample['question'],'output':sample['answer']})
-        self.train = self.train[:train_length]
-
-
-class Webqa_Dataset(Dataset):
-    def __init__(self, subdataset_name=None, train_length=64):
-        super().__init__()
-        self.train = []
-        self.test = []
-        ds = load_dataset("Stanford/web_questions")
-        train_sample = ds['train'].shuffle(seed=77).select(range(train_length))
-        test_sample = ds['test'].shuffle(seed=77).select(range(500))
-        for i in train_sample:
-            self.train.append({'input':i['question'],'output':i['answers'][0]})
-        for i in test_sample:
-            self.test.append({'input':i['question'],'output':i['answers'][0]})
-                
-
-class Nl2bash_Dataset(Dataset):
-    def __init__(self, subdataset_name=None, train_length = 64):
-        super().__init__()
-        self.train = []
-        self.test = []
-        ds = load_dataset("jiacheng-ye/nl2bash")
-        train_sample = ds['train'].shuffle(seed=77).select(range(train_length))
-        test_sample = ds['test'].shuffle(seed=77).select(range(500))
-        for i in train_sample:
-            self.train.append({'input':i['nl'],'output':i['bash']})
-        for i in test_sample:
-            self.test.append({'input':i['nl'],'output':i['bash']})
-             
-
-class Geoquery_Dataset(Dataset):
-    def __init__(self, subdataset_name=None, train_length = 64):
-        super().__init__()
-        self.train = []
-        self.test = []
-        ds = load_dataset("vaishali/geoQuery-tableQA")
-        train_sample = ds['train'].shuffle(seed=77).select(range(train_length))
-        test_sample = ds['test'].shuffle(seed=77)
-        for i in train_sample:
-            self.train.append({'input':i['question'],'output':i['query']})
-        for i in test_sample:
-            self.test.append({'input':i['question'],'output':i['query']})
-       
+         
+  
 if __name__ == "__main__":
     dataset = Webqa_Dataset()
     dataset.show_example()
