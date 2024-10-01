@@ -169,10 +169,6 @@ class Merged_model:
             truth[0] = re.sub(r'[A-Z]', truth[0].strip(), outputs[0], count = 1)
         if dataset_name == 'emotion':
             truth[0] = replace_first_from_list(outputs[0],emotion_candidates,truth[0].strip())
-        if dataset_name == 'banking77':
-            truth[0] = replace_first_from_list(outputs[0],banking77_candidates,truth[0].strip())
-        if dataset_name == 'discovery':
-            truth[0] = replace_first_from_list(outputs[0],discovery_candidates,truth[0].strip())
         if dataset_name == 'tacred':
             truth[0] = replace_first_from_list(outputs[0],tacred_candidates,truth[0].strip())
         if 'gsm8k' in dataset_name:

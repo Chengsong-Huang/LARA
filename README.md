@@ -1,7 +1,7 @@
 # LARA
 codes for Divide, Reweight, and Conquer: A Logit\\ Arithmetic Approach for In-Context Learning
 
-Most codes comes from https://github.com/eth-sri/language-model-arithmetic
+The code base comes from https://github.com/eth-sri/language-model-arithmetic
 
 Main experiment can be run like 
 ```
