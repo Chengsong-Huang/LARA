@@ -1,5 +1,13 @@
-# LARA
-codes for Divide, Reweight, and Conquer: A Logit\\ Arithmetic Approach for In-Context Learning
+# Divide, Reweight, and Conquer: A Logit Arithmetic Approach for In-Context Learning
+This includes the original implementation of Divide, Reweight, and Conquer: A Logit Arithmetic Approach for In-Context Learning
+
+LARA is a novel framework that enhances in-context learning by dividing long input demonstrations into shorter, parallelizable subgroups and reweighting their logits using a non-gradient optimization approach.
+
+[](figures/figure-intro1.jpg)
+
+
+
+
 
 Main experiment can be run like 
 ```
