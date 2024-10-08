@@ -3,7 +3,7 @@ This includes the original implementation of Divide, Reweight, and Conquer: A Lo
 
 LARA is a novel framework that enhances in-context learning by dividing long input demonstrations into shorter, parallelizable subgroups and reweighting their logits using a non-gradient optimization approach.
 
-![](figures/intro1.jpg)
+![](figures/intro.jpg)
 
 
 
