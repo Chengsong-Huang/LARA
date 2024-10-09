@@ -17,7 +17,7 @@ The LARA framework divides the training examples into multiple subgroups and use
 2. [Quick Start](#quick-start)
 3. [Inplement New Tasks](#inplement-new-tasks)
 4. [Baselines](#baselines)
-5. [Acknowledge](#acknowledge)
+5. [Acknowledgement](#acknowledgement)
 6. [Contact](#contact)
 
 
@@ -137,7 +137,7 @@ The ablation study can be conducted using `nonreweight.py`:
 python nonreweight.py --dataset_name BBH`
 ```
 
-## Acknowledge
+## Acknowledgement
 The code base comes from https://github.com/eth-sri/language-model-arithmetic. We are very grateful to the author for providing an excellent code base to implement LARA. We also thank the open-source non-gradient optimization library, https://github.com/facebookresearch/nevergrad.
 
 
