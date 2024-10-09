@@ -157,12 +157,12 @@ class Merged_model:
         truths = [i['output'] for i in test_data]
         results = []
         for i,j in tzip(inputs, truths):
-            outputs = self.model.generate_text(i, max_length=self.max_length, top_k = 1,use_cache=use_cache)
+            outputs = self.model.generate_text(i, max_length=self.max_length, top_k = 1)
             results.append({'input':i, 'output':outputs[0], 'truth':j})
         return results
 
     def compute_loss(self, inputs, truth):
-        outputs = self.model.generate_text(inputs, max_length = self.max_length, top_k = 1,use_cache=use_cache)
+        outputs = self.model.generate_text(inputs, max_length = self.max_length, top_k = 1)
         if dataset_name == 'BBH':
             truth[0] = re.sub(r'\([^\)]+\)', truth[0].strip(), outputs[0])
         if dataset_name == 'MMLU':

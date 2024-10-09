@@ -5,7 +5,6 @@ def get_BBH_prompt(datas, subject=None):
         ans += f"Question: {data['input']}\nAnswer: {data['output']}\n\n"
     return ans
 
-
 def format_subject(subject):
     l = subject.split("_")
     s = ""

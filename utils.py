@@ -4,7 +4,7 @@ import json
 import os
 def get_path_dataset(output_path,dataset_name,subdataset_name,train_length):
     if dataset_name == 'BBH':
-        dataset = BBH_Dataset(f'chain-of-thought-hub/BBH/data/{subdataset_name}.json',train_length)
+        dataset = BBH_Dataset(f'datasets/BBH/data/{subdataset_name}.json',train_length)
         filepath = f'results/{output_path}/{dataset_name}/{subdataset_name}/'
     elif dataset_name == 'MMLU':
         dataset = MMLU_Dataset(subdataset_name,train_length)
@@ -21,8 +21,8 @@ def get_path_dataset(output_path,dataset_name,subdataset_name,train_length):
         print('unimplemented Dataset')
         exit(0)
     return dataset,filepath
+    
 def get_results(dataset_name,results):
-    # results = None
     if dataset_name == 'BBH': 
         results = BBH_Results(results)
     elif dataset_name == 'MMLU':

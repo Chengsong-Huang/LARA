@@ -131,7 +131,6 @@ for subdataset_name in TASKS:
     prompt=prompts[dataset_name]
     all_results = {}
     for n in [2,4,8]:
-        if dataset_name == 'emotion':n*=7
         if n > train_length:continue
         top_k_demo = []
         for idx, similarities in enumerate(cosine_similarities):

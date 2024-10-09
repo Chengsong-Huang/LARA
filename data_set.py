@@ -52,9 +52,9 @@ class MMLU_Dataset(Dataset):
 
     def __init__(self,subdataset_name,train_length = 64):
         super().__init__()
-        dev_df = pd.read_csv(os.path.join('chain-of-thought-hub/MMLU/data', "test", subdataset_name + "_test.csv"), header=None)[:64][:train_length]
+        dev_df = pd.read_csv(os.path.join('datasets/MMLU/data', "test", subdataset_name + "_test.csv"), header=None)[:64][:train_length]
         # chunked_dfs = [dev_df.iloc[i:i + num_rows_per_chunk] for i in range(0, len(dev_df), num_rows_per_chunk)]
-        test_df = pd.read_csv(os.path.join('chain-of-thought-hub/MMLU/data', "test", subdataset_name + "_test.csv"), header=None)[64:][:200]
+        test_df = pd.read_csv(os.path.join('datasets/MMLU/data', "test", subdataset_name + "_test.csv"), header=None)[64:][:200]
         self.train = []
         for i in range(len(dev_df)):
             prompt, answer = format_example(dev_df,i,False)
@@ -98,18 +98,19 @@ class Emotion_Dataset(Dataset):
         super().__init__()
         self.train = []
         self.test = []
-        with open('LARA/datasets/emotion/test.jsonl','r') as f:
+        with open('datasets/emotion/test.jsonl','r') as f:
             for line in f:
                 sample = json.loads(line.strip())
                 self.test.append(sample)
         random.shuffle(self.test)
         self.test = self.test[:500]
         grouped_data = defaultdict(list)
-        with open('LARA/datasets/emotion/train.jsonl','r') as f:
+        with open('datasets/emotion/train.jsonl','r') as f:
             for line in f:
                 sample = json.loads(line.strip())
                 grouped_data[sample['output']].append(sample)
         for _ in range(train_length//28):
+            random.shuffle(candidates)
             for candidate in candidates:
                 self.train.append(random.choice(grouped_data[candidate]))
         assert len(self.train) == train_length
@@ -163,18 +164,19 @@ class TacRED_Dataset(Dataset):
         super().__init__()
         self.train = []
         self.test = []
-        with open('LARA/datasets/tacred/test.jsonl','r') as f:
+        with open('datasets/tacred/test.jsonl','r') as f:
             for line in f:
                 sample = json.loads(line.strip())
                 self.test.append(sample)
         random.shuffle(self.test)
         self.test = self.test[:500]
         grouped_data = defaultdict(list)
-        with open('LARA/datasets/tacred/train.jsonl','r') as f:
+        with open('datasets/tacred/train.jsonl','r') as f:
             for line in f:
                 sample = json.loads(line.strip())
                 grouped_data[sample['output']].append(sample)
         for _ in range(train_length//41):
+            random.shuffle(candidates)
             for candidate in candidates:
                 self.train.append(random.choice(grouped_data[candidate]))
         assert len(self.train) == train_length
