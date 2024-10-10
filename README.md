@@ -53,7 +53,7 @@ python hyper_search_loss.py --model meta-llama/Meta-Llama-3.1-8B --output_path l
 python hyper_search_loss.py --model meta-llama/Meta-Llama-3.1-8B --output_path llama31 --dataset_name tacred  --train_length 8
 ```
 
-## Inplement New Tasks
+## Implement New Tasks
 
 To implement LARA for a new dataset, follow these steps:
 1. Add the dataset loader in `data_set.py` by implementing a new class.
