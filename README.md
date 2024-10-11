@@ -38,20 +38,37 @@ conda env create -f environment.yml
 ```
 
 ## Quick Start
-To run the main experiments, use the following commands:
+To run the main experiments for B-LARA, use the following commands:
 ```
-## BBH B-LARA
+## BBH
 python hyper_search_loss.py --model meta-llama/Meta-Llama-3.1-8B --output_path llama31 --dataset_name BBH --subdataset_name date_understanding --train_length 32 --binary
+
+## MMLU
+python hyper_search_loss.py --model meta-llama/Meta-Llama-3.1-8B --output_path llama31 --dataset_name MMLU --subdataset_name anatomy --train_length 32 --binary
+
+## GoEmotion
+python hyper_search_loss.py --model meta-llama/Meta-Llama-3.1-8B --output_path llama31 --dataset_name emotion  --train_length 8 --binary
+
+## Tacred
+python hyper_search_loss.py --model meta-llama/Meta-Llama-3.1-8B --output_path llama31 --dataset_name tacred  --train_length 4 --binary
+```
+
+To run the main experiments for LARA, use the following commands:
+```
+## BBH
+python hyper_search_loss.py --model meta-llama/Meta-Llama-3.1-8B --output_path llama31 --dataset_name BBH --subdataset_name date_understanding --train_length 32
 
 ## MMLU
 python hyper_search_loss.py --model meta-llama/Meta-Llama-3.1-8B --output_path llama31 --dataset_name MMLU --subdataset_name anatomy --train_length 32
 
-## GoEmotion B-LARA
-python hyper_search_loss.py --model meta-llama/Meta-Llama-3.1-8B --output_path llama31 --dataset_name emotion  --train_length 8 --binary
+## GoEmotion
+python hyper_search_loss.py --model meta-llama/Meta-Llama-3.1-8B --output_path llama31 --dataset_name emotion  --train_length 8
 
 ## Tacred
-python hyper_search_loss.py --model meta-llama/Meta-Llama-3.1-8B --output_path llama31 --dataset_name tacred  --train_length 8
+python hyper_search_loss.py --model meta-llama/Meta-Llama-3.1-8B --output_path llama31 --dataset_name tacred  --train_length 4
 ```
+
+
 
 ## Implement New Tasks
 
