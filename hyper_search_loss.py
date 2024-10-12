@@ -234,7 +234,7 @@ for number_of_shot in [2,4,8]:
             upper=[1.5] * (train_length//number_of_shot),
             lower=[-1.5] * (train_length//number_of_shot),
         )
-    optimizer = ng.optimizers.NGOpt(parametrization=instrum, budget=3)
+    optimizer = ng.optimizers.NGOpt(parametrization=instrum, budget=10)
     recommendation = optimizer.ask()
     with tqdm(total=optimizer.budget) as pbar:
         for i in range(optimizer.budget):
