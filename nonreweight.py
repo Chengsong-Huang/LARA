@@ -12,7 +12,7 @@ from datetime import datetime
 start_time = datetime.now()
 print(start_time)
 parser = argparse.ArgumentParser()
-parser.add_argument('--model', type=str, default = "mistralai/Mistral-7B-v0.3")
+parser.add_argument('--model', type=str, default = "meta-llama/Meta-Llama-3.1-8B")
 parser.add_argument('--output_path', type=str, default = "results")
 parser.add_argument('--dataset_name', type=str, default = 'BBH')
 parser.add_argument('--train_length', type=int, default = 16)

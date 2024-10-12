@@ -10,7 +10,7 @@ from datetime import datetime
 from utils import *
 warnings.filterwarnings("ignore")
 parser = argparse.ArgumentParser()
-parser.add_argument('--model', type=str, default = "NousResearch/Llama-2-7b-hf")
+parser.add_argument('--model', type=str, default = "meta-llama/Meta-Llama-3.1-8B")
 parser.add_argument('--output_path', type=str, default = "results")
 parser.add_argument('--dataset_name', type=str, default = 'BBH')
 parser.add_argument('--train_length', type=int, default = 32)

@@ -69,7 +69,6 @@ python hyper_search_loss.py --model meta-llama/Meta-Llama-3.1-8B --output_path l
 ```
 
 
-
 ## Implement New Tasks
 
 To implement LARA for a new dataset, follow these steps:
@@ -150,7 +149,7 @@ The main code also provides ICL baseline results. The KATE results can be obtain
 python retrieve_baseline.py --dataset_name BBH
 ```
 The ablation study can be conducted using `nonreweight.py`:
-```
+```bash
 python nonreweight.py --dataset_name BBH`
 ```
 
