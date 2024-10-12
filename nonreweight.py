@@ -199,8 +199,6 @@ for subdataset_name in TASKS:
                 truth[0] = re.sub(r'[A-Z]', truth[0], outputs[0], count = 1)
             if dataset_name == 'emotion':
                 truth[0] = replace_first_from_list(outputs[0],emotion_candidates,truth[0])
-            if gsm8k in dataset_name:
-                truth[0] = re.sub(r'(-?\d+\.?\d*)(?!.*(-?\d+\.?\d*))', truth[0], outputs[0])
             truth = self.model.tokenizer(truth, add_special_tokens=False, return_tensors="pt").input_ids.to(self.model.device)
             logits = self.model.tmp
             tensor_list = [torch.stack([v for k, v in sorted(d.items())], dim=0) for d in logits]
