@@ -12,6 +12,7 @@ import re
 import random
 from datetime import datetime
 import pdb
+from tqdm import tqdm
 parser = argparse.ArgumentParser()
 parser.add_argument('--model', type=str, default = "mistralai/Mistral-7B-v0.3")
 parser.add_argument('--output_path', type=str, default = "results")
@@ -193,7 +194,7 @@ class Merged_model:
         inputs = [i['input'] for i in test_data]
         truths = [i['output'] for i in test_data]
         loss = 0
-        for i,j in tzip(inputs, truths):
+        for i,j in zip(inputs, truths):
             loss += self.compute_loss([i],[' '+j])
         return loss
 
@@ -233,8 +234,16 @@ for number_of_shot in [2,4,8]:
             upper=[1.5] * (train_length//number_of_shot),
             lower=[-1.5] * (train_length//number_of_shot),
         )
-    optimizer = ng.optimizers.NGOpt(parametrization=instrum, budget=20)
-    recommendation = optimizer.minimize(get_score_partial, verbosity=1)
+    optimizer = ng.optimizers.NGOpt(parametrization=instrum, budget=3)
+    recommendation = optimizer.ask()
+    with tqdm(total=optimizer.budget) as pbar:
+        for i in range(optimizer.budget):
+            recommendation = optimizer.ask()
+            loss = get_score_partial(recommendation.value)
+            optimizer.tell(recommendation, loss) 
+            recommendation = optimizer.ask()
+            pbar.update(1)
+    # recommendation = optimizer.minimize(get_score_partial, verbosity=1)
     score = get_score_partial(recommendation.value)
     weights = list(recommendation.value)
     tmp[number_of_shot] = (score,weights)
