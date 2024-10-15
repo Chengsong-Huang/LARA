@@ -1,5 +1,5 @@
 # Divide, Reweight, and Conquer: A Logit Arithmetic Approach for In-Context Learning
-This includes the original implementation of [Divide, Reweight, and Conquer: A Logit Arithmetic Approach for In-Context Learning](https://arxiv.org/pdf/2410.10074)
+This includes the original implementation of [Divide, Reweight, and Conquer: A Logit Arithmetic Approach for In-Context Learning](https://arxiv.org/abs/2410.10074)
 LARA is a novel framework that enhances in-context learning by dividing long input demonstrations into shorter, parallelizable subgroups and reweighting their logits using a non-gradient optimization approach.
 
 ![](figures/intro.jpg)
@@ -14,10 +14,11 @@ The LARA framework divides the training examples into multiple subgroups and use
 ## Content
 1. [Installation](#installation)
 2. [Quick Start](#quick-start)
-3. [Inplement New Tasks](#inplement-new-tasks)
+3. [Implement New Tasks](#implement-new-tasks)
 4. [Baselines](#baselines)
 5. [Acknowledgement](#acknowledgement)
 6. [Contact](#contact)
+7. [Citation](#citation)
 
 
 
@@ -158,4 +159,17 @@ The code base comes from https://github.com/eth-sri/language-model-arithmetic. W
 
 ## Contact
 If you have questions, please open an issue or send an email to chengsong[at]wustl.edu.
+
+## Citation
+Please cite our paper if you find the repo helpful in your work:
+```
+@article{Huang2024DivideRC,
+      title={Divide, Reweight, and Conquer: A Logit Arithmetic Approach for In-Context Learning}, 
+      author={Chengsong Huang and Langlin Huang and Jiaxin Huang},
+      year={2024},
+      journal={ArXiv},
+      volume={abs/2410.10074},
+      url={https://arxiv.org/abs/2410.10074}, 
+}
+```
 
