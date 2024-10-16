@@ -1,4 +1,4 @@
-name: /storage1/jiaxinh/Active/chengsong/envs_LARA
+name: envs_LARA
 channels:
   - defaults
 dependencies:
@@ -122,4 +122,3 @@ dependencies:
       - urllib3==2.2.3
       - xxhash==3.5.0
       - yarl==1.14.0
-prefix: /storage1/jiaxinh/Active/chengsong/envs_LARA
