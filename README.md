@@ -157,19 +157,4 @@ python nonreweight.py --dataset_name BBH`
 The code base comes from https://github.com/eth-sri/language-model-arithmetic. We are very grateful to the author for providing an excellent code base to implement LARA. We also thank the open-source non-gradient optimization library, https://github.com/facebookresearch/nevergrad.
 
 
-## Contact
-If you have questions, please open an issue or send an email to chengsong[at]wustl.edu.
-
-## Citation
-Please cite our paper if you find the repo helpful in your work:
-```
-@article{Huang2024DivideRC,
-      title={Divide, Reweight, and Conquer: A Logit Arithmetic Approach for In-Context Learning}, 
-      author={Chengsong Huang and Langlin Huang and Jiaxin Huang},
-      year={2024},
-      journal={ArXiv},
-      volume={abs/2410.10074},
-      url={https://arxiv.org/abs/2410.10074}, 
-}
-```
 
